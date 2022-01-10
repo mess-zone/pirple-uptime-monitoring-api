@@ -10,10 +10,12 @@ const server = http.createServer((req, res)=>{
     const path = parsedUrl.pathname
     const trimmedPath = path.replace(/^\/+|\/+$/g, '')
 
+    const queryStringObject = parsedUrl.query
+
     const method = req.method.toLowerCase()
 
     res.end('Hello World!\n')
-    console.log('Request received:', trimmedPath, method)
+    console.log('Request received:', trimmedPath, method,queryStringObject)
 })
 
 server.listen(3000, ()=>{ console.log('Server listening on port 3000')})

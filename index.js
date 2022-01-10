@@ -14,8 +14,10 @@ const server = http.createServer((req, res)=>{
 
     const method = req.method.toLowerCase()
 
+    const headers = req.headers
+
     res.end('Hello World!\n')
-    console.log('Request received:', trimmedPath, method,queryStringObject)
+    console.log('Request received:', headers)
 })
 
 server.listen(3000, ()=>{ console.log('Server listening on port 3000')})

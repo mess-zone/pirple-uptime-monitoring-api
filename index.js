@@ -72,7 +72,8 @@ httpsServer.listen(config.httpsPort, ()=>{ console.log(`Server listening on port
 
 const router = {
     'ping': handlers.ping,
-    'users': handlers.users
+    'users': handlers.users,
+    'tokens': handlers.tokens
 }
 
 

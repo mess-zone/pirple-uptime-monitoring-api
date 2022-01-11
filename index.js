@@ -3,11 +3,13 @@
  */
 
 const http = require('http')
+const https = require('https')
 const url = require('url')
 const {StringDecoder} = require('string_decoder')
 const config = require('./config')
+const fs  = require('fs')
 
-const server = http.createServer((req, res)=>{
+const unifiedServer = (req, res) =>{
     const parsedUrl = url.parse(req.url, true)
 
     const path = parsedUrl.pathname
@@ -51,10 +53,24 @@ const server = http.createServer((req, res)=>{
         })
 
     })
+}
 
-})
+// HTTP server
+const httpServer = http.createServer(unifiedServer)
+httpServer.listen(config.httpPort, ()=>{ console.log(`Server listening on port ${config.httpPort}`)})
 
-server.listen(config.port, ()=>{ console.log(`Server listening on port ${config.port} in ${config.envName} mode`)})
+// HTTPS server
+const httpsServerOption = {
+    key: fs.readFileSync('./https/key.pem'),
+    cert: fs.readFileSync('./https/cert.pem')
+}
+const httpsServer = https.createServer(httpsServerOption, unifiedServer)
+httpsServer.listen(config.httpsPort, ()=>{ console.log(`Server listening on port ${config.httpsPort}`)})
+
+
+
+
+
 
 
 const handlers = {}
@@ -74,3 +90,6 @@ handlers.notFound = (data, callback) => {
 const router = {
     'sample': handlers.sample
 }
+
+
+

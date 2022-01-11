@@ -5,6 +5,7 @@
 const http = require('http')
 const url = require('url')
 const {StringDecoder} = require('string_decoder')
+const config = require('./config')
 
 const server = http.createServer((req, res)=>{
     const parsedUrl = url.parse(req.url, true)
@@ -30,7 +31,7 @@ const server = http.createServer((req, res)=>{
     req.on('end', ()=>{
         buffer += decoder.end()
 
-        const chosenHandler = typeof(router[trimmedPath]) !== 'undefined' ? router[trimmedPath] : handlers.notFound
+        const chosenHandler = router[trimmedPath] || handlers.notFound
         const data = {
             trimmedPath,
             queryStringObject,
@@ -53,7 +54,7 @@ const server = http.createServer((req, res)=>{
 
 })
 
-server.listen(3000, ()=>{ console.log('Server listening on port 3000')})
+server.listen(config.port, ()=>{ console.log(`Server listening on port ${config.port} in ${config.envName} mode`)})
 
 
 const handlers = {}

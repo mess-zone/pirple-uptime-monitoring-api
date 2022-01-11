@@ -75,8 +75,8 @@ httpsServer.listen(config.httpsPort, ()=>{ console.log(`Server listening on port
 
 const handlers = {}
 
-handlers.sample = (data, callback) => {
-    callback(406, {name: 'sample handler'})
+handlers.ping = (data, callback) => {
+    callback(200)
 }
 
 handlers.notFound = (data, callback) => {
@@ -88,7 +88,7 @@ handlers.notFound = (data, callback) => {
 // request router
 
 const router = {
-    'sample': handlers.sample
+    'ping': handlers.ping
 }
 
 

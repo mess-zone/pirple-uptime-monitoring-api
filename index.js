@@ -8,6 +8,7 @@ const url = require('url')
 const {StringDecoder} = require('string_decoder')
 const config = require('./config')
 const fs  = require('fs')
+const handlers = require('./lib/handlers')
 
 const unifiedServer = (req, res) =>{
     const parsedUrl = url.parse(req.url, true)
@@ -66,24 +67,6 @@ const httpsServerOption = {
 }
 const httpsServer = https.createServer(httpsServerOption, unifiedServer)
 httpsServer.listen(config.httpsPort, ()=>{ console.log(`Server listening on port ${config.httpsPort}`)})
-
-
-
-
-
-
-
-const handlers = {}
-
-handlers.ping = (data, callback) => {
-    callback(200)
-}
-
-handlers.notFound = (data, callback) => {
-    callback(404)
-}
-
-
 
 // request router
 

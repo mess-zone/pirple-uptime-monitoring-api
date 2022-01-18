@@ -538,8 +538,8 @@ app.init = function(){
   // Renew token
   app.tokenRenewalLoop();
 
-//   // Load data on page
-//   app.loadDataOnPage();
+  // Load data on page
+  app.loadDataOnPage();
 
 };
 

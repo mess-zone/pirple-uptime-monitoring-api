@@ -529,8 +529,8 @@ app.init = function(){
   // Bind all form submissions
   app.bindForms();
 
-//   // Bind logout logout button
-//   app.bindLogoutButton();
+  // Bind logout logout button
+  app.bindLogoutButton();
 
   // Get the token from localstorage
   app.getSessionToken();

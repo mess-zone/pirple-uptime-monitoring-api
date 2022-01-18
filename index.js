@@ -4,6 +4,7 @@
 
 const server = require('./lib/server')
 const workers = require('./lib/workers')
+const cli = require('./lib/cli')
 
 const app = {}
 
@@ -13,6 +14,11 @@ app.init = () => {
 
     //start workers
     workers.init()
+
+    // start CLI, make sure it starts last
+    setTimeout(()=>{
+        cli.init()
+    }, 50)
 }
 
 app.init()

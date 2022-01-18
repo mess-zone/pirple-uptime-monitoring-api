@@ -532,11 +532,11 @@ app.init = function(){
 //   // Bind logout logout button
 //   app.bindLogoutButton();
 
-//   // Get the token from localstorage
-//   app.getSessionToken();
+  // Get the token from localstorage
+  app.getSessionToken();
 
-//   // Renew token
-//   app.tokenRenewalLoop();
+  // Renew token
+  app.tokenRenewalLoop();
 
 //   // Load data on page
 //   app.loadDataOnPage();
